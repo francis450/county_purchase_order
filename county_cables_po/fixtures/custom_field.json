@@ -204,7 +204,7 @@
     "fieldtype": "Float",
     "in_list_view": 1,
     "columns": 1,
-    "insert_after": "custom_pcs_per_box"
+    "insert_after": "custom_total_pcs_row"
   },
   {
     "doctype": "Custom Field",
@@ -216,7 +216,7 @@
     "fieldtype": "Float",
     "in_list_view": 1,
     "columns": 1,
-    "insert_after": "custom_price_rmb"
+    "insert_after": "custom_cost_per_item"
   },
   {
     "doctype": "Custom Field",
@@ -228,7 +228,7 @@
     "fieldtype": "Currency",
     "in_list_view": 1,
     "columns": 1,
-    "insert_after": "custom_cbm_per_box"
+    "insert_after": "custom_unit_cost"
   },
   {
     "doctype": "Custom Field",
@@ -241,7 +241,7 @@
     "read_only": 1,
     "in_list_view": 1,
     "columns": 1,
-    "insert_after": "custom_projected_price"
+    "insert_after": "custom_pcs_per_box"
   },
   {
     "doctype": "Custom Field",
@@ -254,7 +254,7 @@
     "read_only": 1,
     "in_list_view": 1,
     "columns": 1,
-    "insert_after": "custom_total_pcs_row"
+    "insert_after": "custom_price_rmb"
   },
   {
     "doctype": "Custom Field",
@@ -293,7 +293,7 @@
     "read_only": 1,
     "in_list_view": 1,
     "columns": 1,
-    "insert_after": "custom_cost_per_item"
+    "insert_after": "custom_cbm_per_box"
   },
   {
     "doctype": "Custom Field",
@@ -346,7 +346,7 @@
     "read_only": 1,
     "in_list_view": 1,
     "columns": 1,
-    "insert_after": "custom_unit_cost"
+    "insert_after": "custom_projected_price"
   },
   {
     "doctype": "Custom Field",
