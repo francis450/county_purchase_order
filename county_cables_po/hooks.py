@@ -5,6 +5,22 @@ app_description = "Customizations on purchase orders for countycables.co.ke"
 app_email = "contact@erpkenya.com"
 app_license = "mit"
 
+fixtures = [
+    {"dt": "Custom Field", "filters": [["module", "=", "County Cables Po"]]},
+    {"dt": "Property Setter", "filters": [["name", "like", "Purchase Order%"]]},
+    {"dt": "Client Script", "filters": [["module", "=", "County Cables Po"]]},
+]
+
+doctype_js = {
+    "Purchase Order": "public/js/purchase_order.js"
+}
+
+doc_events = {
+    "Purchase Order": {
+        "before_validate": "county_cables_po.purchase_order.before_validate",
+    }
+}
+
 # Apps
 # ------------------
 
