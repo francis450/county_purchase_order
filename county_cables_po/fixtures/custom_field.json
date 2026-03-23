@@ -212,7 +212,7 @@
     "module": "County Cables Po",
     "dt": "Purchase Order Item",
     "fieldname": "custom_price_rmb",
-    "label": "Price/Item (RMB)",
+    "label": "Cost/Item(RMB)",
     "fieldtype": "Float",
     "in_list_view": 1,
     "columns": 1,
