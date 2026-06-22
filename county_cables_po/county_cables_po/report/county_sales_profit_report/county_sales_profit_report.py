@@ -1,3 +1,6 @@
+import calendar
+from datetime import date
+
 import frappe
 from frappe import _
 from frappe.utils import fmt_money, flt
@@ -46,6 +49,8 @@ def _base_conditions(filters):
 	]
 	if filters.get("customer"):
 		conds.append("si.customer = %(customer)s")
+	if filters.get("warehouse"):
+		conds.append("sii.warehouse = %(warehouse)s")
 	if filters.get("item_code"):
 		conds.append("sii.item_code = %(item_code)s")
 	if filters.get("item_group"):
@@ -88,6 +93,23 @@ def _summary_columns(filters):
 	]
 
 
+def _period_dates(period, group_by):
+	"""Return (from_date, to_date) strings for a period row."""
+	period = str(period)
+	if group_by == "Day":
+		return period, period
+	if group_by == "Week":
+		year, week = int(period[:4]), int(period[4:])
+		first = date.fromisocalendar(year, week, 1)
+		last = date.fromisocalendar(year, week, 7)
+		return str(first), str(last)
+	# Month: period = "YYYY-MM"
+	year, month = int(period[:4]), int(period[5:7])
+	first = date(year, month, 1)
+	last = date(year, month, calendar.monthrange(year, month)[1])
+	return str(first), str(last)
+
+
 def _get_summary_data(filters):
 	group_expr, _period_select = _period_expr(filters)
 	item_join = _item_join(filters)
@@ -113,9 +135,14 @@ def _get_summary_data(filters):
 		as_dict=True,
 	)
 
-	# Compute GP%
+	group_by = filters.get("group_by", "Month")
+
+	# Compute GP% and period date range for drill-down links
 	for r in rows:
 		r["gp_pct"] = flt(r["gross_profit"]) / flt(r["revenue"]) * 100 if r.get("revenue") else 0
+		pf, pt = _period_dates(r["period"], group_by)
+		r["period_from"] = pf
+		r["period_to"] = pt
 
 	# Totals row
 	if rows:
@@ -132,6 +159,8 @@ def _get_summary_data(filters):
 			"cogs": t_cogs,
 			"gross_profit": t_gp,
 			"gp_pct": t_gp / t_rev * 100 if t_rev else 0,
+			"period_from": filters.get("from_date"),
+			"period_to": filters.get("to_date"),
 			"bold": 1,
 		})
 
@@ -280,8 +309,8 @@ def _build_kpi_html(filters):
 			min-width: 140px;
 			flex: 1;
 		">
-			<div style="font-size: 11px; color: var(--text-muted, #6c757d); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">{_(label)}</div>
-			<div style="font-size: 20px; font-weight: 700; color: {color};">{value}</div>
+			<div style="font-size: 10px; color: var(--text-muted, #6c757d); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">{_(label)}</div>
+			<div style="font-size: 12px; font-weight: 600; color: {color}; letter-spacing: 0.3px;">{value}</div>
 		</div>"""
 
 	return f"""
