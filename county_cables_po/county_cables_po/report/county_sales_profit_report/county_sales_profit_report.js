@@ -52,7 +52,7 @@ frappe.query_reports["County Sales Profit Report"] = {
 			label: __("Report Type"),
 			fieldtype: "Select",
 			options: "Summary\nDetail",
-			default: "Summary",
+			default: "Detail",
 		},
 	],
 };
