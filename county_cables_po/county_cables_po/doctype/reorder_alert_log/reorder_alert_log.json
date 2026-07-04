@@ -1,0 +1,68 @@
+{
+ "actions": [],
+ "creation": "2026-07-04 10:00:00",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "item_code",
+  "status",
+  "raised_on",
+  "active"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Item",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Critical\nReorder Now",
+   "reqd": 1
+  },
+  {
+   "fieldname": "raised_on",
+   "fieldtype": "Datetime",
+   "label": "Raised On",
+   "read_only": 1
+  },
+  {
+   "default": "1",
+   "description": "Cleared when the item's status falls back to Watch/OK. A new alert (and notification) is only raised once this is unchecked and the item crosses into Critical/Reorder Now again.",
+   "fieldname": "active",
+   "fieldtype": "Check",
+   "in_standard_filter": 1,
+   "label": "Active"
+  }
+ ],
+ "links": [],
+ "modified": "2026-07-04 10:00:00",
+ "modified_by": "Administrator",
+ "module": "County Cables Po",
+ "name": "Reorder Alert Log",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

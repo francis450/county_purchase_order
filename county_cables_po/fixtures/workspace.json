@@ -1,0 +1,187 @@
+[
+ {
+  "charts": [
+   {
+    "chart_name": "Reorder Status Breakdown",
+    "label": "Reorder Status Breakdown",
+    "parent": "Reorder Management",
+    "parentfield": "charts",
+    "parenttype": "Workspace"
+   }
+  ],
+  "content": "[{\"id\": \"a521c1c04d\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\">Reorder Management</span>\", \"col\": 12}}, {\"id\": \"a1cc185fdf\", \"type\": \"paragraph\", \"data\": {\"text\": \"<p>Recalculated nightly from Sales Invoice history and current stock. Items in <b>Critical</b> will stock out before a new order can land - act on these first. Order-by dates assume the lead time shown per item (default 2 months unless set on the Item).</p>\", \"col\": 12}}, {\"id\": \"422352fb01\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h5\\\">Overview</span>\", \"col\": 12}}, {\"id\": \"ef8910bcb7\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Items Critical\", \"col\": 3}}, {\"id\": \"8c9d82a922\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Items Reorder Now\", \"col\": 3}}, {\"id\": \"f912c15c7f\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Total Suggested Order Value\", \"col\": 3}}, {\"id\": \"6011689923\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Dormant Capital\", \"col\": 3}}, {\"id\": \"cc5db9525b\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Reorder Status Breakdown\", \"col\": 12}}, {\"id\": \"209279e303\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h5\\\">Reports</span>\", \"col\": 12}}, {\"id\": \"6fe435d300\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Action View\", \"col\": 4}}, {\"id\": \"06c0ecc1ca\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Dormant Stock View\", \"col\": 4}}, {\"id\": \"9b126845df\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Dead SKUs View\", \"col\": 4}}, {\"id\": \"30560588bc\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h5\\\">Item Management</span>\", \"col\": 12}}, {\"id\": \"6977b8ed9a\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Reorder Recommendation\", \"col\": 6}}, {\"id\": \"da52efeabe\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Reorder Alert Log\", \"col\": 6}}, {\"id\": \"13e06f0e4e\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h6 text-muted\\\">Admin</span>\", \"col\": 12}}, {\"id\": \"9412f917a5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Reorder Automation Settings\", \"col\": 4}}]",
+  "custom_blocks": [],
+  "docstatus": 0,
+  "doctype": "Workspace",
+  "for_user": null,
+  "hide_custom": 0,
+  "icon": "small-file",
+  "indicator_color": "orange",
+  "is_hidden": 0,
+  "label": "Reorder Management",
+  "links": [],
+  "modified": "2026-07-04 14:44:33.454821",
+  "module": "County Cables Po",
+  "name": "Reorder Management",
+  "number_cards": [
+   {
+    "label": "Items Critical",
+    "number_card_name": "Items Critical",
+    "parent": "Reorder Management",
+    "parentfield": "number_cards",
+    "parenttype": "Workspace"
+   },
+   {
+    "label": "Items Reorder Now",
+    "number_card_name": "Items Reorder Now",
+    "parent": "Reorder Management",
+    "parentfield": "number_cards",
+    "parenttype": "Workspace"
+   },
+   {
+    "label": "Total Suggested Order Value",
+    "number_card_name": "Total Suggested Order Value",
+    "parent": "Reorder Management",
+    "parentfield": "number_cards",
+    "parenttype": "Workspace"
+   },
+   {
+    "label": "Dormant Capital",
+    "number_card_name": "Dormant Capital",
+    "parent": "Reorder Management",
+    "parentfield": "number_cards",
+    "parenttype": "Workspace"
+   }
+  ],
+  "parent_page": null,
+  "public": 1,
+  "quick_lists": [],
+  "restrict_to_domain": null,
+  "roles": [
+   {
+    "parent": "Reorder Management",
+    "parentfield": "roles",
+    "parenttype": "Workspace",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "Reorder Management",
+    "parentfield": "roles",
+    "parenttype": "Workspace",
+    "role": "Purchase User"
+   },
+   {
+    "parent": "Reorder Management",
+    "parentfield": "roles",
+    "parenttype": "Workspace",
+    "role": "System Manager"
+   }
+  ],
+  "sequence_id": 0.0,
+  "shortcuts": [
+   {
+    "color": "Red",
+    "doc_view": "",
+    "format": null,
+    "icon": null,
+    "kanban_board": null,
+    "label": "Action View",
+    "link_to": null,
+    "parent": "Reorder Management",
+    "parentfield": "shortcuts",
+    "parenttype": "Workspace",
+    "report_ref_doctype": null,
+    "restrict_to_domain": null,
+    "stats_filter": null,
+    "type": "URL",
+    "url": "/app/query-report/Reorder Recommendations?view=Action"
+   },
+   {
+    "color": "Blue",
+    "doc_view": "",
+    "format": null,
+    "icon": null,
+    "kanban_board": null,
+    "label": "Dormant Stock View",
+    "link_to": null,
+    "parent": "Reorder Management",
+    "parentfield": "shortcuts",
+    "parenttype": "Workspace",
+    "report_ref_doctype": null,
+    "restrict_to_domain": null,
+    "stats_filter": null,
+    "type": "URL",
+    "url": "/app/query-report/Reorder Recommendations?view=Dormant Stock"
+   },
+   {
+    "color": "Grey",
+    "doc_view": "",
+    "format": null,
+    "icon": null,
+    "kanban_board": null,
+    "label": "Dead SKUs View",
+    "link_to": null,
+    "parent": "Reorder Management",
+    "parentfield": "shortcuts",
+    "parenttype": "Workspace",
+    "report_ref_doctype": null,
+    "restrict_to_domain": null,
+    "stats_filter": null,
+    "type": "URL",
+    "url": "/app/query-report/Reorder Recommendations?view=Dead SKU"
+   },
+   {
+    "color": "Green",
+    "doc_view": "List",
+    "format": null,
+    "icon": null,
+    "kanban_board": null,
+    "label": "Reorder Recommendation",
+    "link_to": "Reorder Recommendation",
+    "parent": "Reorder Management",
+    "parentfield": "shortcuts",
+    "parenttype": "Workspace",
+    "report_ref_doctype": null,
+    "restrict_to_domain": null,
+    "stats_filter": null,
+    "type": "DocType",
+    "url": null
+   },
+   {
+    "color": "Red",
+    "doc_view": "List",
+    "format": null,
+    "icon": null,
+    "kanban_board": null,
+    "label": "Reorder Alert Log",
+    "link_to": "Reorder Alert Log",
+    "parent": "Reorder Management",
+    "parentfield": "shortcuts",
+    "parenttype": "Workspace",
+    "report_ref_doctype": null,
+    "restrict_to_domain": null,
+    "stats_filter": null,
+    "type": "DocType",
+    "url": null
+   },
+   {
+    "color": "Grey",
+    "doc_view": "",
+    "format": null,
+    "icon": null,
+    "kanban_board": null,
+    "label": "Reorder Automation Settings",
+    "link_to": "Reorder Automation Settings",
+    "parent": "Reorder Management",
+    "parentfield": "shortcuts",
+    "parenttype": "Workspace",
+    "report_ref_doctype": null,
+    "restrict_to_domain": null,
+    "stats_filter": null,
+    "type": "DocType",
+    "url": null
+   }
+  ],
+  "title": "Reorder Management"
+ }
+]

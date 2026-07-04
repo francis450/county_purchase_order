@@ -1,0 +1,128 @@
+{
+ "actions": [],
+ "autoname": "Reorder Automation Settings",
+ "creation": "2026-07-04 10:00:00",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "calculation_section",
+  "trailing_months",
+  "lead_time_months",
+  "min_history_months",
+  "column_break_calc",
+  "anomaly_multiplier",
+  "max_suggested_months",
+  "corroboration_threshold_pct",
+  "warehouse_section",
+  "included_warehouses",
+  "notification_section",
+  "notify_role"
+ ],
+ "fields": [
+  {
+   "fieldname": "calculation_section",
+   "fieldtype": "Section Break",
+   "label": "Calculation Parameters"
+  },
+  {
+   "default": "4",
+   "description": "Number of trailing calendar months of Sales Invoice history used to compute median monthly demand.",
+   "fieldname": "trailing_months",
+   "fieldtype": "Int",
+   "label": "Trailing Months",
+   "reqd": 1
+  },
+  {
+   "default": "2",
+   "description": "Fallback lead time (in months) used when an Item's Lead Time Days is not set.",
+   "fieldname": "lead_time_months",
+   "fieldtype": "Int",
+   "label": "Default Lead Time (Months)",
+   "reqd": 1
+  },
+  {
+   "default": "2",
+   "description": "Minimum usable months of sales history (after stockout-month exclusion) required to compute a reorder level. Items below this go to manual review.",
+   "fieldname": "min_history_months",
+   "fieldtype": "Int",
+   "label": "Minimum History (Months)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_calc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "2.0",
+   "description": "A trailing month exceeding this multiple of the item's raw median is clipped and flagged as an anomaly.",
+   "fieldname": "anomaly_multiplier",
+   "fieldtype": "Float",
+   "label": "Anomaly Multiplier",
+   "reqd": 1
+  },
+  {
+   "default": "6",
+   "description": "Suggested order quantity exceeding this many months of median demand is flagged as a large order (not blocked).",
+   "fieldname": "max_suggested_months",
+   "fieldtype": "Float",
+   "label": "Max Suggested Months",
+   "reqd": 1
+  },
+  {
+   "default": "15",
+   "description": "Per-item deviation (%) between Sales Invoice qty and Stock Ledger outgoing qty above which the corroboration flag is set.",
+   "fieldname": "corroboration_threshold_pct",
+   "fieldtype": "Float",
+   "label": "Corroboration Threshold (%)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "warehouse_section",
+   "fieldtype": "Section Break",
+   "label": "Warehouse Scope"
+  },
+  {
+   "description": "Warehouses whose stock counts toward current/projected qty. Transit/supplier warehouses (e.g. an overseas holding warehouse) should not be included here.",
+   "fieldname": "included_warehouses",
+   "fieldtype": "Table MultiSelect",
+   "label": "Included Warehouses",
+   "options": "Reorder Included Warehouse"
+  },
+  {
+   "fieldname": "notification_section",
+   "fieldtype": "Section Break",
+   "label": "Notifications"
+  },
+  {
+   "description": "Role notified when an item newly crosses into Critical / Reorder Now status.",
+   "fieldname": "notify_role",
+   "fieldtype": "Link",
+   "label": "Notify Role",
+   "options": "Role"
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-07-04 10:00:00",
+ "modified_by": "Administrator",
+ "module": "County Cables Po",
+ "name": "Reorder Automation Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

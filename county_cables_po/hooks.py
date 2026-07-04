@@ -9,6 +9,9 @@ fixtures = [
     {"dt": "Custom Field", "filters": [["module", "=", "County Cables Po"]]},
     {"dt": "Property Setter", "filters": [["name", "like", "Purchase Order%"]]},
     {"dt": "Client Script", "filters": [["module", "=", "County Cables Po"]]},
+    {"dt": "Number Card", "filters": [["module", "=", "County Cables Po"]]},
+    {"dt": "Dashboard Chart", "filters": [["module", "=", "County Cables Po"]]},
+    {"dt": "Workspace", "filters": [["module", "=", "County Cables Po"]]},
 ]
 
 doctype_js = {
@@ -164,23 +167,12 @@ doc_events = {
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"county_cables_po.tasks.all"
-# 	],
-# 	"daily": [
-# 		"county_cables_po.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"county_cables_po.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"county_cables_po.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"county_cables_po.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	"daily": [
+		"county_cables_po.tasks.recalculate_reorder_recommendations",
+		"county_cables_po.tasks.check_low_stock_and_notify",
+	],
+}
 
 # Testing
 # -------

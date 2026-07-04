@@ -1,0 +1,358 @@
+{
+ "actions": [],
+ "autoname": "field:item_code",
+ "creation": "2026-07-04 10:00:00",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "item_code",
+  "item_name",
+  "status",
+  "column_break_top",
+  "item_group",
+  "default_supplier",
+  "last_calculated",
+  "demand_section",
+  "median_monthly_demand",
+  "monthly_demand_breakdown",
+  "trend",
+  "anomaly_flag",
+  "excluded_stockout_months",
+  "column_break_demand",
+  "insufficient_history_flag",
+  "corroboration_flag",
+  "lead_time_section",
+  "lead_time_months_used",
+  "lead_time_source",
+  "column_break_lead",
+  "reorder_level",
+  "stock_section",
+  "actual_qty",
+  "projected_qty",
+  "months_of_stock_remaining",
+  "column_break_stock",
+  "projected_stockout_date",
+  "order_by_date",
+  "suggested_order_qty",
+  "large_order_flag",
+  "stale_open_po_flag",
+  "money_section",
+  "suggested_order_value",
+  "monthly_revenue_at_risk",
+  "column_break_money",
+  "locked_capital",
+  "rate_missing_flag",
+  "dormant_section",
+  "last_sale_date",
+  "last_receipt_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Item",
+   "options": "Item",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fetch_from": "item_code.item_name",
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Item Name",
+   "read_only": 1
+  },
+  {
+   "default": "OK",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Critical\nReorder Now\nWatch\nOK\nDormant Stock\nDead SKU\nInsufficient History",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_top",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "item_code.item_group",
+   "fieldname": "item_group",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Item Group",
+   "options": "Item Group",
+   "read_only": 1
+  },
+  {
+   "description": "First row of the Item's Supplier table, if populated.",
+   "fieldname": "default_supplier",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Default Supplier",
+   "options": "Supplier",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_calculated",
+   "fieldtype": "Datetime",
+   "label": "Last Calculated",
+   "read_only": 1
+  },
+  {
+   "fieldname": "demand_section",
+   "fieldtype": "Section Break",
+   "label": "Demand"
+  },
+  {
+   "fieldname": "median_monthly_demand",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Median Monthly Demand",
+   "read_only": 1
+  },
+  {
+   "description": "JSON list of {month, qty, excluded, clipped} for the trailing window - drives the report's monthly bucket columns.",
+   "fieldname": "monthly_demand_breakdown",
+   "fieldtype": "Long Text",
+   "label": "Monthly Demand Breakdown",
+   "read_only": 1
+  },
+  {
+   "description": "Mean of the 2 most recent usable months vs the 2 prior, +/-20% threshold. Only computed when all trailing months are usable (no exclusions).",
+   "fieldname": "trend",
+   "fieldtype": "Select",
+   "label": "Trend",
+   "options": "\nUp\nDown\nFlat",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "anomaly_flag",
+   "fieldtype": "Check",
+   "label": "Anomaly Flag",
+   "read_only": 1
+  },
+  {
+   "description": "Calendar months excluded from the demand series because the item was out of stock for more than half the month.",
+   "fieldname": "excluded_stockout_months",
+   "fieldtype": "Small Text",
+   "label": "Excluded Stockout Months",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_demand",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Set whenever no reorder math was computed for this item (Dead SKU, Dormant Stock, or Insufficient History).",
+   "fieldname": "insufficient_history_flag",
+   "fieldtype": "Check",
+   "label": "No Reorder Math Computed",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Set when per-item Sales Invoice qty deviates from Stock Ledger outgoing qty by more than the configured threshold.",
+   "fieldname": "corroboration_flag",
+   "fieldtype": "Check",
+   "label": "Corroboration Flag",
+   "read_only": 1
+  },
+  {
+   "fieldname": "lead_time_section",
+   "fieldtype": "Section Break",
+   "label": "Lead Time & Reorder Level"
+  },
+  {
+   "fieldname": "lead_time_months_used",
+   "fieldtype": "Float",
+   "label": "Lead Time (Months) Used",
+   "read_only": 1
+  },
+  {
+   "fieldname": "lead_time_source",
+   "fieldtype": "Select",
+   "label": "Lead Time Source",
+   "options": "Item\nDefault",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_lead",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reorder_level",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Reorder Level",
+   "read_only": 1
+  },
+  {
+   "fieldname": "stock_section",
+   "fieldtype": "Section Break",
+   "label": "Stock & Suggested Order"
+  },
+  {
+   "fieldname": "actual_qty",
+   "fieldtype": "Float",
+   "label": "Actual Qty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "projected_qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Projected Qty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "months_of_stock_remaining",
+   "fieldtype": "Float",
+   "label": "Months of Stock Remaining",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_stock",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "projected_stockout_date",
+   "fieldtype": "Date",
+   "label": "Projected Stockout Date",
+   "read_only": 1
+  },
+  {
+   "description": "Projected stockout date minus lead time - the date procurement must act by.",
+   "fieldname": "order_by_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Order By Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "suggested_order_qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Suggested Order Qty",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Suggested order qty exceeds the configured max-suggested-months ceiling - not blocked, but flagged for review.",
+   "fieldname": "large_order_flag",
+   "fieldtype": "Check",
+   "label": "Large Order Flag",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "One or more Purchase Orders for this item are open beyond expected lead time, inflating projected qty and potentially suppressing this alert.",
+   "fieldname": "stale_open_po_flag",
+   "fieldtype": "Check",
+   "label": "Stale Open PO Flag",
+   "read_only": 1
+  },
+  {
+   "fieldname": "money_section",
+   "fieldtype": "Section Break",
+   "label": "Money"
+  },
+  {
+   "description": "Source: suggested_order_qty x last Purchase Invoice rate (fallback: Item Price buying rate).",
+   "fieldname": "suggested_order_value",
+   "fieldtype": "Currency",
+   "label": "Suggested Order Value",
+   "read_only": 1
+  },
+  {
+   "description": "Critical/Reorder Now only. Source: median_monthly_demand x last Sales Invoice rate (fallback: Item Price selling rate).",
+   "fieldname": "monthly_revenue_at_risk",
+   "fieldtype": "Currency",
+   "label": "Monthly Revenue at Risk",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_money",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Dormant Stock only. Source: actual_qty x qty-weighted Bin valuation_rate across included warehouses.",
+   "fieldname": "locked_capital",
+   "fieldtype": "Currency",
+   "label": "Locked Capital",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Set when a money column above could not be computed because no rate was found - the column is left blank rather than shown as 0.",
+   "fieldname": "rate_missing_flag",
+   "fieldtype": "Check",
+   "label": "Rate Missing",
+   "read_only": 1
+  },
+  {
+   "fieldname": "dormant_section",
+   "fieldtype": "Section Break",
+   "label": "Dormant Stock Detail"
+  },
+  {
+   "fieldname": "last_sale_date",
+   "fieldtype": "Date",
+   "label": "Last Sale Date",
+   "read_only": 1
+  },
+  {
+   "description": "Latest positive stock movement into an included warehouse (no Purchase Receipts exist on this site, so this is a proxy via Stock Ledger Entry).",
+   "fieldname": "last_receipt_date",
+   "fieldtype": "Date",
+   "label": "Last Receipt Date",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-07-04 14:15:00.000000",
+ "modified_by": "Administrator",
+ "module": "County Cables Po",
+ "name": "Reorder Recommendation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Purchase Manager"
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Purchase User"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "item_name"
+}
