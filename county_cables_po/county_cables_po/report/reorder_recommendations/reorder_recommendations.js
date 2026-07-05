@@ -42,15 +42,6 @@ frappe.query_reports["Reorder Recommendations"] = {
 			// Supplier subtotal / grand total rows.
 			return `<b>${value || ""}</b>`;
 		}
-		if (
-			column.fieldname === "months_of_stock_remaining" &&
-			!data.median_monthly_demand
-		) {
-			// Zero demand means "months of stock remaining" is undefined (could
-			// be read as infinite), not literally 0 - which would misleadingly
-			// imply an imminent stockout for an overstocked item.
-			return "";
-		}
 		if (column.fieldname === "status") {
 			const colors = {
 				Critical: "red",

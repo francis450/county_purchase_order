@@ -58,7 +58,7 @@ def get_columns(month_labels, show_diagnostics):
 		{"fieldname": "median_monthly_demand", "label": _("Median Monthly Demand"), "fieldtype": "Float", "width": 190},
 		{"fieldname": "actual_qty", "label": _("Actual Qty"), "fieldtype": "Float", "width": 120},
 		{"fieldname": "projected_qty", "label": _("Projected Qty"), "fieldtype": "Float", "width": 140},
-		{"fieldname": "months_of_stock_remaining", "label": _("Months of Stock Remaining"), "fieldtype": "Float", "width": 210},
+		{"fieldname": "months_of_stock_remaining", "label": _("Months of Stock Remaining"), "fieldtype": "Data", "width": 210},
 		{"fieldname": "projected_stockout_date", "label": _("Projected Stockout Date"), "fieldtype": "Date", "width": 190},
 		{"fieldname": "order_by_date", "label": _("Order By Date"), "fieldtype": "Date", "width": 150},
 		{"fieldname": "suggested_order_qty", "label": _("Suggested Order Qty"), "fieldtype": "Float", "width": 180},
@@ -143,6 +143,23 @@ def build_rows(rows, month_labels, view):
 	return ordered_records
 
 
+def _format_months_remaining(months):
+	"""'1.333' months means nothing to a buyer - show it as months/days instead.
+	30-day months, consistent with how projected_stockout_date is computed."""
+	if months is None:
+		return ""
+	total_days = round(flt(months) * 30)
+	if total_days <= 0:
+		return "0 days"
+	months_part, days_part = divmod(total_days, 30)
+	parts = []
+	if months_part:
+		parts.append(f"{months_part} month" + ("s" if months_part != 1 else ""))
+	if days_part or not months_part:
+		parts.append(f"{days_part} day" + ("s" if days_part != 1 else ""))
+	return " ".join(parts)
+
+
 def _row_to_record(row, month_labels):
 	breakdown_by_month = {}
 	if row.monthly_demand_breakdown:
@@ -154,6 +171,9 @@ def _row_to_record(row, month_labels):
 	record = dict(row)
 	record["last_calculated_display"] = (
 		row.last_calculated.strftime("%Y-%m-%d %H:%M") if row.last_calculated else ""
+	)
+	record["months_of_stock_remaining"] = (
+		_format_months_remaining(row.months_of_stock_remaining) if row.median_monthly_demand else ""
 	)
 
 	for ym in month_labels:
